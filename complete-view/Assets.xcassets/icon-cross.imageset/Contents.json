@@ -6,11 +6,12 @@
     },
     {
       "idiom" : "universal",
-      "filename" : "屏幕快照 2018-05-08 上午2.44.22.png",
+      "filename" : "icons8-delete-64.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
+      "filename" : "icons8-delete-128.png",
       "scale" : "3x"
     }
   ],

@@ -18,6 +18,7 @@ class SecondStatisticViewController: UIViewController, UITableViewDelegate, UITa
 
     @IBOutlet weak var csvFileNmae: UILabel!
     @IBOutlet weak var studentStatisticTableView: UITableView!
+    @IBOutlet weak var refreshButton: UIButton!
 
     var prefix: String!
     var downloadFileName: String!
@@ -62,6 +63,25 @@ class SecondStatisticViewController: UIViewController, UITableViewDelegate, UITa
         }
 
         // Download the csv file which will be reffered later in this example
+        studentStatisticTableView.reloadData()
+    }
+    @IBAction func refreshList(_ sender: UIButton) {
+        if self.downloadCsv != nil {
+            //let readings = fullText.componentsSeparatedByString("\n") as [String]
+            let readings = self.downloadCsv.components(separatedBy: "\r\n") as [String]
+
+            //componentsSeparatedByString("\n") as [String]
+            for i in 1..<readings.count - 1 {
+                let clientData = readings[i].components(separatedBy: ",")
+                dictStudents["Name"] = "\(clientData[0])"
+                dictStudents["Present"] = "\(clientData[1])"
+                arrayStudents.add(dictStudents)
+            }
+
+            print("\n\n get array students: \(arrayStudents)")
+        }
+
+        studentStatisticTableView.reloadData()
     }
 
     func downloadContent(content: AWSContent, pinOnCompletion: Bool) -> Void {
@@ -77,11 +97,11 @@ class SecondStatisticViewController: UIViewController, UITableViewDelegate, UITa
                 // Handle successful download here
                 print("\n\n !!!! Suppose to get new data here ")
                 if let csv = String(data: data!, encoding: .utf8){
-                    print("\n\n get the downloadcsv here \(self.downloadCsv) \n\n ")
                     self.downloadCsv = csv
+                    print("\n\n get the downloadcsv here \(self.downloadCsv) \n\n ")
                 }
-                print("\n\n get the downloadcsv here \(self.downloadCsv) \n\n ")
         } )
+        print("\n\n get the downloadcsv outside here \(self.downloadCsv) \n\n ")
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -98,11 +118,11 @@ class SecondStatisticViewController: UIViewController, UITableViewDelegate, UITa
 
         let student = arrayStudents[indexPath.row]
         cell.studentName.text = "\((student as AnyObject).object(forKey:"Name")!)"
-        let isPresent = "\((student as AnyObject).object(forKey:"Present")!)"
-        if isPresent == "0" {
-            cell.imageView?.image = UIImage(named: "icon-cross")
+        let presence = "\((student as AnyObject).object(forKey:"Present")!)"
+        if presence == "0" {
+            cell.isPresent?.image = UIImage(named: "icon-cross")
         } else {
-            cell.imageView?.image = UIImage(named: "icon-check")
+            cell.isPresent?.image = UIImage(named: "icon-check")
         }
 
         return cell

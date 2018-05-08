@@ -45,14 +45,6 @@ class MainController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
         contents = []
 
-        /*if (AWSSignInManager.sharedInstance().isLoggedIn) {
-            print("The user is already logged in!")
-            let userId = AWSIdentityManager.default().identityId!
-            self.prefix = "\(UserFilesPrivateDirectoryName)/\(userId)/"
-            self.refreshContents()
-            self.updateUserInterface()
-            self.loadMoreContents()
-        }*/
     }
 
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

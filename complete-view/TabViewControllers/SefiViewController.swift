@@ -100,6 +100,7 @@ class SefiViewController: UIViewController{
     fileprivate func uploadLocalContent(_ localContent: AWSLocalContent) {
         localContent.uploadWithPin(onCompletion: false, progressBlock: {[weak self] (content: AWSLocalContent, progress: Progress) in
                 guard self != nil else { return }
+                self?.progressView.progress = Float(progress.fractionCompleted)
             }, completionHandler: {[weak self] (content: AWSLocalContent?, error: Error?) in
                 guard let strongSelf = self else { return }
                 if let error = error {

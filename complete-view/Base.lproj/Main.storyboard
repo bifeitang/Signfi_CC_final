@@ -246,13 +246,6 @@
                                 <rect key="frame" x="67" y="598" width="281" height="2"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </progressView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HOp-Ic-PVq">
-                                <rect key="frame" x="196" y="608" width="22" height="18"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -274,7 +267,6 @@
                     <tabBarItem key="tabBarItem" title="selfi" image="icon-camera" id="wEn-Pv-EJr"/>
                     <connections>
                         <outlet property="imageUploadProgress" destination="F86-cf-o0v" id="01L-ea-MKC"/>
-                        <outlet property="progressLabel" destination="HOp-Ic-PVq" id="WgV-Yi-8VD"/>
                         <outlet property="progressView" destination="F86-cf-o0v" id="OR5-Qc-YFh"/>
                         <outlet property="sefiImageView" destination="ybk-Xx-V5b" id="a4s-z8-mLy"/>
                         <outlet property="uploadButton" destination="vEl-fv-gFx" id="qzx-Kc-k3o"/>
@@ -364,29 +356,29 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="I8C-eS-wFv">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="I8C-eS-wFv">
                                 <rect key="frame" x="0.0" y="187" width="414" height="549"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="studentCell" rowHeight="80" id="VIU-dX-KdP" customClass="StudentPresenceTableViewCell" customModule="complete_view">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="80"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="studentCell" rowHeight="100" id="VIU-dX-KdP" customClass="StudentPresenceTableViewCell" customModule="complete_view">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="VIU-dX-KdP" id="z6g-dX-MaV">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="79.666666666666671"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="99.666666666666671"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icon-cross" translatesAutoresizingMaskIntoConstraints="NO" id="kgT-gr-TTy">
+                                                    <rect key="frame" x="330" y="20" width="60" height="60"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IfR-Vw-QeL">
-                                                    <rect key="frame" x="20" y="29" width="280" height="21"/>
+                                                    <rect key="frame" x="20" y="35" width="277" height="34"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="28"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kgT-gr-TTy">
-                                                    <rect key="frame" x="334" y="9" width="60" height="60"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                                </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
@@ -397,7 +389,6 @@
                                 </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="Alx-zS-qPk" id="Ozg-nz-hcT"/>
-                                    <outlet property="delegate" destination="Alx-zS-qPk" id="VGD-D9-AA8"/>
                                 </connections>
                             </tableView>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="leading" contentVerticalAlignment="center" text="Filename:" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0Uu-ce-kT6">
@@ -414,12 +405,21 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iyn-Gc-MOm">
+                                <rect key="frame" x="346" y="92" width="51" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Update"/>
+                                <connections>
+                                    <action selector="refreshList:" destination="Alx-zS-qPk" eventType="touchUpInside" id="UQx-rM-Udu"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="DVw-sx-2h7"/>
                     </view>
                     <connections>
                         <outlet property="csvFileNmae" destination="4sG-Wu-D5O" id="jYq-Xb-z9r"/>
+                        <outlet property="refreshButton" destination="Iyn-Gc-MOm" id="QCe-mR-cPR"/>
                         <outlet property="studentStatisticTableView" destination="I8C-eS-wFv" id="zSQ-Lb-OPQ"/>
                     </connections>
                 </viewController>
@@ -465,11 +465,11 @@
             </objects>
             <point key="canvasLocation" x="-120.28985507246378" y="-297.554347826087"/>
         </scene>
-        <!--Item-->
+        <!--Statistic-->
         <scene sceneID="88A-mk-ybB">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="kiV-bH-Z79" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" selectedImage="icon-statistics" id="iId-0n-F8k"/>
+                    <tabBarItem key="tabBarItem" title="Statistic" image="icon-statistics" selectedImage="icon-statistics" id="iId-0n-F8k"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" hidden="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="OWp-DN-RZo">
                         <rect key="frame" x="0.0" y="20" width="414" height="44"/>
@@ -490,6 +490,7 @@
         <image name="back-photo-default" width="488" height="512"/>
         <image name="icon-add" width="64" height="64"/>
         <image name="icon-camera" width="30" height="30"/>
+        <image name="icon-cross" width="42" height="42"/>
         <image name="icon-login" width="104" height="116"/>
         <image name="icon-statistics" width="30" height="30"/>
         <image name="icon-user" width="30" height="30"/>
