@@ -65,7 +65,6 @@ class MainController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
 
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        print("!!!!!!!Inside TableView")
         let cell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: "groupCell")
         var content: AWSContent? = nil
         if indexPath.row < contents!.count {
@@ -82,7 +81,7 @@ class MainController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let nextPage = segue.destination as! BaseTabBarController
-        nextPage.content = (sender as! AWSContent)
+        nextPage.nextContent = (sender as! AWSContent)
     }
 
     @IBAction func unwindSeague(_ sender:UIStoryboardSegue) {
@@ -104,7 +103,6 @@ class MainController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 print("Failed to load the list of contents. \(error)")
             }
             if let contents = contents, contents.count > 0 {
-                print("!!!! The content of the file is More than 0")
                 strongSelf.contents = contents
                 if let nextMarker = nextMarker, !nextMarker.isEmpty {
                     strongSelf.didLoadAllContents = false

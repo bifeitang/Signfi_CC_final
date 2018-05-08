@@ -45,6 +45,14 @@
 	<string>Allows to select photo from the user camera</string>
 	<key>AWS</key>
 	<dict>
+		<key>S3TransferUtility</key>
+		<dict>
+			<key>Default</key>
+			<dict>
+				<key>Region</key>
+				<string>us-east-1</string>
+			</dict>
+		</dict>
 		<key>PinpointAnalytics</key>
 		<dict>
 			<key>Default</key>

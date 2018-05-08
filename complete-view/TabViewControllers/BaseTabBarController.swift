@@ -15,11 +15,11 @@ import MobileCoreServices
 class BaseTabBarController: UITabBarController {
 
     var prefix: String! = ""
-    var content: AWSContent? = nil
+    var nextContent: AWSContent? = nil
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(content?.key as Any)
+        print(nextContent?.key as Any)
         // Do any additional setup after loading the view.
     }
 

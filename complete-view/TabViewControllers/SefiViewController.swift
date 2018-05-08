@@ -25,7 +25,7 @@ class SefiViewController: UIViewController{
 
     // Here we want to load the file to the private/user-id/source/
     var prefix: String! = ""
-    var content: AWSContent? = nil
+    var nextcontent: AWSContent? = nil
 
 
     fileprivate var manager: AWSUserFileManager!
@@ -33,9 +33,9 @@ class SefiViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         let tabbar = tabBarController as! BaseTabBarController
-        content = tabbar.content
-        print("Student View Controller: content.key is")
-        print(content?.key as Any)
+        nextcontent = tabbar.nextContent
+        prefix = nextcontent?.key as Any as! String + "target/"
+        print("Inside Selfi with prefix: \(prefix)")
         manager = AWSUserFileManager.defaultUserFileManager()
 
         // Do any additional setup after loading the view.

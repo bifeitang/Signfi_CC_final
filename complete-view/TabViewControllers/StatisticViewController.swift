@@ -2,108 +2,138 @@
 //  StatisticViewController.swift
 //  complete-view
 //
-//  Created by Sunshine on 2018/5/6.
+//  Created by Sunshine on 2018/5/8.
 //  Copyright © 2018年 Sunshine. All rights reserved.
 //
 
+import Foundation
 import UIKit
 import AWSS3
+import AWSAuthCore
+import AWSAuthUI
 import AWSMobileHubContentManager
-import MobileCoreServices
 
-class StatisticViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class StatisticViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
-    var content: AWSContent? = nil
+    @IBOutlet weak var statisticTable: UITableView!
+
     var prefix: String!
+    var nextContent: AWSContent? = nil
 
-    var dictClients = [String:String]()
-    var arrayClients = NSMutableArray()
-
-
-
-    @IBOutlet weak var statisticTabelView: UITableView!
-
+    fileprivate var contents: [AWSContent]?
+    fileprivate var didLoadAllContents: Bool!
+    fileprivate var dateFormatter: DateFormatter!
+    fileprivate var marker: String?
+    fileprivate var manager: AWSUserFileManager!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
         let tabbar = tabBarController as! BaseTabBarController
-        content = tabbar.content
-        print("Student View Controller: content.key is")
-        print(content?.key as Any)
+        nextContent = tabbar.nextContent
+        prefix = nextContent?.key as Any as! String + "statistic/"
+        print("print the prefix: \(prefix)")
 
-        statisticTabelView.delegate = self
-        statisticTabelView.dataSource = self
+        statisticTable.delegate = self
+        statisticTable.dataSource = self
 
-        let path = Bundle.main.path(forResource: "clients", ofType: "txt")
-        let filemgr = FileManager.default
-        if filemgr.fileExists(atPath:path!){
-            do{
-                let fullText = try String(contentsOfFile: path!,encoding:String.Encoding.utf8)
+        // Sets up the date formatter.
+        dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .short
+        dateFormatter.timeStyle = .short
+        dateFormatter.locale = Locale.current
 
-                //let readings = fullText.componentsSeparatedByString("\n") as [String]
-                let readings = fullText.components(separatedBy: "\n") as [String]
+        statisticTable.estimatedRowHeight = statisticTable.rowHeight
+        statisticTable.rowHeight = UITableViewAutomaticDimension
+        didLoadAllContents = false
+        manager = AWSUserFileManager.defaultUserFileManager()
 
-                //componentsSeparatedByString("\n") as [String]
-                for i in 1..<readings.count {
-                    print(readings[i])
-                    let clientData = readings[i].components(separatedBy: "\t")
-                    print(clientData)
-                    dictClients["Name"] = "\(clientData[0])"
-                    dictClients["Present"] = "\(clientData[1])"
-                    arrayClients.add(dictClients)//addObjects(dictClients)
-                }
+        contents = []
 
-            }catch let error as NSError{
-                print("Error: \(error)")
-            }
-        }
-
-        self.title = "number of students:\(arrayClients.count)"
-
-        
+        self.refreshContents()
+        self.updateUserInterface()
+        self.loadMoreContents()
 
     }
 
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return arrayClients.count
+
+        if let contents = self.contents {
+            return contents.count
+        }
+        return 0
     }
 
-
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
-        // Table view cells are reused and should be dequeued using a cell identifier.
-        let cellIdentifier = "StudentCell"
-
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? customStudentCell  else {
-            fatalError("The dequeued cell is not an instance of MealTableViewCell.")
+        let cell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: "statisticCell")
+        var content: AWSContent? = nil
+        if indexPath.row < contents!.count {
+            content = contents![indexPath.row]
         }
-
-        let client = arrayClients[indexPath.row]
-        cell.studentName.text = "\((client as AnyObject).object(forKey:"Name")!)"
-        let present = "\((client as AnyObject).object(forKey:"Present")!)"
-        if(present == "0") {
-            cell.imageStatus.image = UIImage(named: "icon-check")
-        } else {
-            cell.imageStatus.image = UIImage(named: "icon-cross")
-        }
-
-
+        var foldername = content!.key.components(separatedBy: "/")
+        cell.textLabel?.text = foldername[4]
         return cell
     }
 
-    class myCell: UITableViewCell {
-        @IBOutlet weak var studentName: UIImageView!
-
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "clickOnCsv", sender: contents![indexPath.row])
     }
-    /*
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        let nextPage = segue.destination as! SecondStatisticViewController
+        nextPage.nextContent = (sender as! AWSContent)
     }
-    */
+
+    fileprivate func refreshContents() {
+        marker = nil
+        loadMoreContents()
+    }
+
+    fileprivate func loadMoreContents() {
+
+        manager.listAvailableContents(withPrefix: prefix, marker: marker) {[weak self] (contents: [AWSContent]?, nextMarker: String?, error: Error?) in
+            guard let strongSelf = self else { return }
+            if let error = error {
+                strongSelf.showSimpleAlertWithTitle("Error", message: "Failed to load the list of contents.", cancelButtonTitle: "OK")
+                print("Failed to load the list of contents. \(error)")
+            }
+            if let contents = contents, contents.count > 0 {
+                print("The contents of file !!!!!: \(contents)")
+                strongSelf.contents = contents
+                if let nextMarker = nextMarker, !nextMarker.isEmpty {
+                    strongSelf.didLoadAllContents = false
+                } else {
+                    strongSelf.didLoadAllContents = true
+                }
+                strongSelf.marker = nextMarker
+            } else {
+                print("No group find down in this user, please create a new group")
+            }
+            strongSelf.updateUserInterface()
+        }
+    }
+
+
+    fileprivate func updateUserInterface() {
+        DispatchQueue.main.async {
+            self.statisticTable.reloadData()
+        }
+    }
+
+    @IBAction func clickUpdatae(_ sender: UIBarButtonItem) {
+        self.refreshContents()
+        self.updateUserInterface()
+        self.loadMoreContents()
+    }
+}
+
+
+extension StatisticViewController {
+
+    fileprivate func showSimpleAlertWithTitle(_ title: String, message: String, cancelButtonTitle cancelTitle: String) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: cancelTitle, style: .cancel, handler: nil)
+        alertController.addAction(cancelAction)
+        present(alertController, animated: true, completion: nil)
+    }
 
 }
