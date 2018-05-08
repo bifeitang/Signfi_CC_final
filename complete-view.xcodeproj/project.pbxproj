@@ -10,6 +10,8 @@
 		3AAE5B3A246BA5BD8EA49ADF /* Pods_complete_viewUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E65B02670E489A6AAED2E288 /* Pods_complete_viewUITests.framework */; };
 		668A1E1CB0022145CEA0E0E6 /* Pods_complete_viewTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B065DD8C7A25A0DB3C973860 /* Pods_complete_viewTests.framework */; };
 		AE1E5AAE20A0B37900DD214C /* AWSMobileHubContentManager.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AE1E5AA820A0920800DD214C /* AWSMobileHubContentManager.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		AE1E5AB120A14A4700DD214C /* StuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1E5AB020A14A4700DD214C /* StuViewController.swift */; };
+		AE1E5AF120A1564F00DD214C /* BaseTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1E5AF020A1564F00DD214C /* BaseTabBarController.swift */; };
 		AE2D4141209F5A1F008FDA1E /* SefiViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2D4140209F5A1F008FDA1E /* SefiViewController.swift */; };
 		AE2D4143209F6A84008FDA1E /* StatisticViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2D4142209F6A84008FDA1E /* StatisticViewController.swift */; };
 		AE81E6A6209E7CC400DDD46F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE81E6A5209E7CC400DDD46F /* AppDelegate.swift */; };
@@ -60,6 +62,8 @@
 		572F9814DB46F65157407658 /* Pods_complete_view.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_complete_view.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F3FCD6EBA1D460F253FD83B /* Pods-complete-viewUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-complete-viewUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-complete-viewUITests/Pods-complete-viewUITests.release.xcconfig"; sourceTree = "<group>"; };
 		AE1E5AA820A0920800DD214C /* AWSMobileHubContentManager.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AWSMobileHubContentManager.framework; sourceTree = "<group>"; };
+		AE1E5AB020A14A4700DD214C /* StuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StuViewController.swift; sourceTree = "<group>"; };
+		AE1E5AF020A1564F00DD214C /* BaseTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTabBarController.swift; sourceTree = "<group>"; };
 		AE2D4140209F5A1F008FDA1E /* SefiViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SefiViewController.swift; sourceTree = "<group>"; };
 		AE2D4142209F6A84008FDA1E /* StatisticViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticViewController.swift; sourceTree = "<group>"; };
 		AE81E6A2209E7CC400DDD46F /* complete-view.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "complete-view.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -142,6 +146,8 @@
 			children = (
 				AE2D4140209F5A1F008FDA1E /* SefiViewController.swift */,
 				AE2D4142209F6A84008FDA1E /* StatisticViewController.swift */,
+				AE1E5AB020A14A4700DD214C /* StuViewController.swift */,
+				AE1E5AF020A1564F00DD214C /* BaseTabBarController.swift */,
 			);
 			path = TabViewControllers;
 			sourceTree = "<group>";
@@ -429,11 +435,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AE1E5AF120A1564F00DD214C /* BaseTabBarController.swift in Sources */,
 				AE81E6D4209E909100DDD46F /* StudentItem.swift in Sources */,
 				AE2D4141209F5A1F008FDA1E /* SefiViewController.swift in Sources */,
 				AE81E6D6209E91CB00DDD46F /* DataManager.swift in Sources */,
 				AE2D4143209F6A84008FDA1E /* StatisticViewController.swift in Sources */,
 				AE81E6A8209E7CC400DDD46F /* MainController.swift in Sources */,
+				AE1E5AB120A14A4700DD214C /* StuViewController.swift in Sources */,
 				AE81E6A6209E7CC400DDD46F /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -32,9 +32,6 @@
                                         </fragment>
                                     </attributedString>
                                 </state>
-                                <connections>
-                                    <segue destination="gKN-9k-GCX" kind="show" id="gUh-TY-5o8"/>
-                                </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="back-banner" translatesAutoresizingMaskIntoConstraints="NO" id="6Lx-IX-AGm">
                                 <rect key="frame" x="0.0" y="0.0" width="575" height="166"/>
@@ -107,6 +104,7 @@
                         <outlet property="createGroupButton" destination="66Q-zf-hU2" id="Lir-74-Whg"/>
                         <outlet property="groupsTableView" destination="Rfv-z5-97n" id="a7T-dv-4cX"/>
                         <outlet property="loginButton" destination="5wz-9K-Oph" id="06W-4O-3II"/>
+                        <segue destination="gKN-9k-GCX" kind="show" identifier="groupSelected" id="M30-gC-T6x"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -131,7 +129,7 @@
                                 <rect key="frame" x="20" y="27" width="48" height="30"/>
                                 <state key="normal" title="&lt; Back"/>
                                 <connections>
-                                    <segue destination="lnU-W8-usJ" kind="show" id="a5E-Vt-nyW"/>
+                                    <segue destination="6jF-Fj-92Q" kind="unwind" unwindAction="unwindSeague:" id="cH9-3e-2by"/>
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="72" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="uLk-AT-9Kt">
@@ -192,10 +190,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WfZ-V4-pOp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="6jF-Fj-92Q" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2761" y="466"/>
         </scene>
-        <!--User-->
+        <!--Stu-->
         <scene sceneID="0h9-LY-Wi7">
             <objects>
                 <viewController id="ybp-uL-g0O" sceneMemberID="viewController">
@@ -213,7 +212,7 @@
                                 <rect key="frame" x="20" y="27" width="48" height="30"/>
                                 <state key="normal" title="&lt; Back"/>
                                 <connections>
-                                    <segue destination="lnU-W8-usJ" kind="show" id="7v7-pb-j4D"/>
+                                    <segue destination="BWL-iB-YOC" kind="unwind" unwindAction="unwindSeague:" id="zHm-Pp-jOX"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -228,9 +227,10 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="y0b-s6-ZOy"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="User" image="icon-user" id="UlY-tj-U9M"/>
+                    <tabBarItem key="tabBarItem" title="Stu" image="icon-user" id="UlY-tj-U9M"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Naq-yz-H8T" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="BWL-iB-YOC" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2761" y="-1026"/>
         </scene>
@@ -252,7 +252,7 @@
                                 <rect key="frame" x="20" y="27" width="48" height="30"/>
                                 <state key="normal" title="&lt; Back"/>
                                 <connections>
-                                    <segue destination="lnU-W8-usJ" kind="show" id="VKK-du-Zq2"/>
+                                    <segue destination="BIf-GO-EdY" kind="unwind" unwindAction="unwindSeague:" id="6A6-cU-20H"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vEl-fv-gFx">
@@ -319,6 +319,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K5V-af-Ahh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="BIf-GO-EdY" userLabel="Exit" sceneMemberID="exit"/>
                 <tapGestureRecognizer id="kBO-ni-eqa">
                     <connections>
                         <action selector="selectImageFromLibrary:" destination="IgJ-sz-qiP" id="RA6-yh-Vuz"/>
@@ -327,10 +328,10 @@
             </objects>
             <point key="canvasLocation" x="2760.8695652173915" y="-296.73913043478262"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Base Tab Bar Controller-->
         <scene sceneID="bFZ-Dx-bv6">
             <objects>
-                <tabBarController id="gKN-9k-GCX" sceneMemberID="viewController">
+                <tabBarController id="gKN-9k-GCX" customClass="BaseTabBarController" customModule="complete_view" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="khB-OS-ang">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -376,7 +377,4 @@
         <image name="icon-user" width="30" height="30"/>
         <image name="text-group" width="425" height="206"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="a5E-Vt-nyW"/>
-    </inferredMetricsTieBreakers>
 </document>

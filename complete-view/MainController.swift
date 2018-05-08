@@ -45,14 +45,14 @@ class MainController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
         contents = []
 
-        if (AWSSignInManager.sharedInstance().isLoggedIn) {
+        /*if (AWSSignInManager.sharedInstance().isLoggedIn) {
             print("The user is already logged in!")
             let userId = AWSIdentityManager.default().identityId!
             self.prefix = "\(UserFilesPrivateDirectoryName)/\(userId)/"
             self.refreshContents()
             self.updateUserInterface()
             self.loadMoreContents()
-        }
+        }*/
     }
 
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -75,6 +75,20 @@ class MainController: UIViewController, UITableViewDelegate, UITableViewDataSour
         cell.textLabel?.text = foldername[2]
         return cell
     }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "groupSelected", sender: contents![indexPath.row])
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let nextPage = segue.destination as! BaseTabBarController
+        nextPage.content = (sender as! AWSContent)
+    }
+
+    @IBAction func unwindSeague(_ sender:UIStoryboardSegue) {
+        print("Go back to the main")
+    }
+    
 
     fileprivate func refreshContents() {
         marker = nil

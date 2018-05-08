@@ -24,12 +24,18 @@ class SefiViewController: UIViewController{
     @IBOutlet weak var progressView: UIProgressView!
 
     // Here we want to load the file to the private/user-id/source/
-    var prefix: String! = "\(UserFilesUploadsDirectoryName)/"
+    var prefix: String! = ""
+    var content: AWSContent? = nil
+
 
     fileprivate var manager: AWSUserFileManager!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        let tabbar = tabBarController as! BaseTabBarController
+        content = tabbar.content
+        print("Student View Controller: content.key is")
+        print(content?.key as Any)
         manager = AWSUserFileManager.defaultUserFileManager()
 
         // Do any additional setup after loading the view.

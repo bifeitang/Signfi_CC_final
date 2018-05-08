@@ -7,10 +7,14 @@
 //
 
 import UIKit
-import AWSCore
 import AWSS3
+import AWSMobileHubContentManager
+import MobileCoreServices
 
 class StatisticViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITableViewDataSourcePrefetching {
+
+    var content: AWSContent? = nil
+    var prefix: String!
 
     let s3Bucket = "signfi-statistics-mobilehub"
     let statisiticKey = "Sambit/group1.csv"
@@ -36,6 +40,10 @@ class StatisticViewController: UIViewController, UITableViewDelegate, UITableVie
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        let tabbar = tabBarController as! BaseTabBarController
+        content = tabbar.content
+        print("Student View Controller: content.key is")
+        print(content?.key as Any)
 
 
         /*let getAttendenceCsv = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("sefi1.csv")
@@ -92,7 +100,6 @@ class StatisticViewController: UIViewController, UITableViewDelegate, UITableVie
             return nil
         }
     }
-    
 
     /*
     // MARK: - Navigation
