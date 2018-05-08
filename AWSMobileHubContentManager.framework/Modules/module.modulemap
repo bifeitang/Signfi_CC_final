@@ -1,0 +1,6 @@
+framework module AWSMobileHubContentManager {
+  umbrella header "AWSMobileHubContentManager.h"
+
+  export *
+  module * { export * }
+}

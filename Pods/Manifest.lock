@@ -1,0 +1,56 @@
+PODS:
+  - AWSAuthCore (2.6.17):
+    - AWSCore (= 2.6.17)
+  - AWSAuthUI (2.6.17):
+    - AWSAuthCore (= 2.6.17)
+    - AWSCore (= 2.6.17)
+  - AWSCognito (2.6.17):
+    - AWSCore (= 2.6.17)
+  - AWSCognitoIdentityProvider (2.6.17):
+    - AWSCognitoIdentityProviderASF (= 1.0.1)
+    - AWSCore (= 2.6.17)
+  - AWSCognitoIdentityProviderASF (1.0.1)
+  - AWSCore (2.6.17)
+  - AWSPinpoint (2.6.17):
+    - AWSCore (= 2.6.17)
+  - AWSS3 (2.6.17):
+    - AWSCore (= 2.6.17)
+  - AWSUserPoolsSignIn (2.6.17):
+    - AWSAuthCore (= 2.6.17)
+    - AWSCognitoIdentityProvider (= 2.6.17)
+
+DEPENDENCIES:
+  - AWSAuthCore (~> 2.6.1)
+  - AWSAuthUI (~> 2.6.1)
+  - AWSCognito
+  - AWSCore
+  - AWSPinpoint (~> 2.6.1)
+  - AWSS3 (~> 2.6.1)
+  - AWSUserPoolsSignIn (~> 2.6.1)
+
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - AWSAuthCore
+    - AWSAuthUI
+    - AWSCognito
+    - AWSCognitoIdentityProvider
+    - AWSCognitoIdentityProviderASF
+    - AWSCore
+    - AWSPinpoint
+    - AWSS3
+    - AWSUserPoolsSignIn
+
+SPEC CHECKSUMS:
+  AWSAuthCore: 15a48ce8153e6b7b7df763e8df9d993c7797957e
+  AWSAuthUI: c275f3be411076b0aa33237cb9efc596c16aa631
+  AWSCognito: 2a3da30af7d731cfd1032812a052e65099bbe26a
+  AWSCognitoIdentityProvider: 9f15b1d0073c3585d791877c98e1315c368b4f18
+  AWSCognitoIdentityProviderASF: f94f1a502e72ef3d0a1de93e10bf7a79c8698118
+  AWSCore: 82fbb01d73a22cfae77ac2f03f6073a123092452
+  AWSPinpoint: e00eaa2a04a1c8176f1481391b32e43279471dd1
+  AWSS3: 00482eb3363cab1d4c3fd7b0bb7c117ae7264505
+  AWSUserPoolsSignIn: ba2e21e15527ba955194031fd40f02e1490630fe
+
+PODFILE CHECKSUM: 901537c2d022eb1f6b3ec611bee2949b6a7531cd
+
+COCOAPODS: 1.5.0
