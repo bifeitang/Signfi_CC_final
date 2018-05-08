@@ -11,28 +11,14 @@ import AWSS3
 import AWSMobileHubContentManager
 import MobileCoreServices
 
-class StatisticViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITableViewDataSourcePrefetching {
+class StatisticViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     var content: AWSContent? = nil
     var prefix: String!
 
-    let s3Bucket = "signfi-statistics-mobilehub"
-    let statisiticKey = "Sambit/group1.csv"
+    var dictClients = [String:String]()
+    var arrayClients = NSMutableArray()
 
-    let list = ["Jason", "Peter", "Mary"]
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return(list.count)
-    }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: UITableViewCellStyle.value2, reuseIdentifier: "StudentCell")
-        return cell
-    }
-
-    func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
-
-    }
 
 
     @IBOutlet weak var statisticTabelView: UITableView!
@@ -45,62 +31,71 @@ class StatisticViewController: UIViewController, UITableViewDelegate, UITableVie
         print("Student View Controller: content.key is")
         print(content?.key as Any)
 
+        statisticTabelView.delegate = self
+        statisticTabelView.dataSource = self
 
-        /*let getAttendenceCsv = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("sefi1.csv")
+        let path = Bundle.main.path(forResource: "clients", ofType: "txt")
+        let filemgr = FileManager.default
+        if filemgr.fileExists(atPath:path!){
+            do{
+                let fullText = try String(contentsOfFile: path!,encoding:String.Encoding.utf8)
 
-        let transferManager = AWSS3TransferManager.default()
+                //let readings = fullText.componentsSeparatedByString("\n") as [String]
+                let readings = fullText.components(separatedBy: "\n") as [String]
 
-        if let downloadRequest = AWSS3TransferManagerDownloadRequest(){
-            downloadRequest.bucket = s3Bucket
-            downloadRequest.key = statisiticKey
-            downloadRequest.downloadingFileURL = getAttendenceCsv
+                //componentsSeparatedByString("\n") as [String]
+                for i in 1..<readings.count {
+                    print(readings[i])
+                    let clientData = readings[i].components(separatedBy: "\t")
+                    print(clientData)
+                    dictClients["Name"] = "\(clientData[0])"
+                    dictClients["Present"] = "\(clientData[1])"
+                    arrayClients.add(dictClients)//addObjects(dictClients)
+                }
 
-            transferManager.download(downloadRequest).continueWith(block:
-                { (task: AWSTask<AnyObject>) -> Any? in
-                if let error = task.error{
-                    //fatalError(error.localizedDescription)
-                    print(error)
-                } else {
-                    print(task.result as Any)
-                    }
-                return nil
-            })
-        }*/
-
-        /*guard let csvPath = Bundle.main.path(forResource: "fileName", ofType: "csv") else { return }
-
-        do {
-            let csvData = try String(contentsOfFile: csvPath, encoding: String.Encoding.utf8)
-            let csv = csvData.
-
-            for row in csv {
-                print(row)
+            }catch let error as NSError{
+                print("Error: \(error)")
             }
-        } catch{
-            print(error)
-        }*/
-
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-    func readStringFromURL(stringURL:String)-> String!{
-        if let url = NSURL(string: stringURL) {
-            do {
-                return try String(contentsOf: url as URL, encoding: String.Encoding.utf8)
-            } catch {
-                print("Cannot load contents")
-                return nil
-            }
-        } else {
-            print("String was not a URL")
-            return nil
         }
+
+        self.title = "number of students:\(arrayClients.count)"
+
+        
+
     }
 
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // #warning Incomplete implementation, return the number of rows
+        return arrayClients.count
+    }
+
+
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+
+        // Table view cells are reused and should be dequeued using a cell identifier.
+        let cellIdentifier = "StudentCell"
+
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? customStudentCell  else {
+            fatalError("The dequeued cell is not an instance of MealTableViewCell.")
+        }
+
+        let client = arrayClients[indexPath.row]
+        cell.studentName.text = "\((client as AnyObject).object(forKey:"Name")!)"
+        let present = "\((client as AnyObject).object(forKey:"Present")!)"
+        if(present == "0") {
+            cell.imageStatus.image = UIImage(named: "icon-check")
+        } else {
+            cell.imageStatus.image = UIImage(named: "icon-cross")
+        }
+
+
+        return cell
+    }
+
+    class myCell: UITableViewCell {
+        @IBOutlet weak var studentName: UIImageView!
+
+    }
     /*
     // MARK: - Navigation
 

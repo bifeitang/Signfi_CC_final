@@ -12,6 +12,7 @@
 		AE1E5AAE20A0B37900DD214C /* AWSMobileHubContentManager.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AE1E5AA820A0920800DD214C /* AWSMobileHubContentManager.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		AE1E5AB120A14A4700DD214C /* StuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1E5AB020A14A4700DD214C /* StuViewController.swift */; };
 		AE1E5AF120A1564F00DD214C /* BaseTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1E5AF020A1564F00DD214C /* BaseTabBarController.swift */; };
+		AE1F417720A17AFD00BA9BB0 /* clients.txt in Resources */ = {isa = PBXBuildFile; fileRef = AE1F417620A17AFD00BA9BB0 /* clients.txt */; };
 		AE2D4141209F5A1F008FDA1E /* SefiViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2D4140209F5A1F008FDA1E /* SefiViewController.swift */; };
 		AE2D4143209F6A84008FDA1E /* StatisticViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2D4142209F6A84008FDA1E /* StatisticViewController.swift */; };
 		AE81E6A6209E7CC400DDD46F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE81E6A5209E7CC400DDD46F /* AppDelegate.swift */; };
@@ -64,6 +65,7 @@
 		AE1E5AA820A0920800DD214C /* AWSMobileHubContentManager.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AWSMobileHubContentManager.framework; sourceTree = "<group>"; };
 		AE1E5AB020A14A4700DD214C /* StuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StuViewController.swift; sourceTree = "<group>"; };
 		AE1E5AF020A1564F00DD214C /* BaseTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTabBarController.swift; sourceTree = "<group>"; };
+		AE1F417620A17AFD00BA9BB0 /* clients.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = clients.txt; path = "../../../../../Library/Containers/com.tencent.xinWeChat/Data/Library/Application Support/com.tencent.xinWeChat/2.0b4.0.9/c0b4eb93041bbb2263fab23d6c64607d/Message/MessageTemp/49131d09dbc7a344d1376a3a8635b076/File/clients.txt"; sourceTree = "<group>"; };
 		AE2D4140209F5A1F008FDA1E /* SefiViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SefiViewController.swift; sourceTree = "<group>"; };
 		AE2D4142209F6A84008FDA1E /* StatisticViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticViewController.swift; sourceTree = "<group>"; };
 		AE81E6A2209E7CC400DDD46F /* complete-view.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "complete-view.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -181,6 +183,7 @@
 				AE81E6A5209E7CC400DDD46F /* AppDelegate.swift */,
 				AE81E6A7209E7CC400DDD46F /* MainController.swift */,
 				AE81E6A9209E7CC400DDD46F /* Main.storyboard */,
+				AE1F417620A17AFD00BA9BB0 /* clients.txt */,
 				AE81E6AC209E7CC500DDD46F /* Assets.xcassets */,
 				AE81E6AE209E7CC500DDD46F /* LaunchScreen.storyboard */,
 				AE81E6B1209E7CC500DDD46F /* Info.plist */,
@@ -320,6 +323,7 @@
 				AE81E6B0209E7CC500DDD46F /* LaunchScreen.storyboard in Resources */,
 				AE81E6AD209E7CC500DDD46F /* Assets.xcassets in Resources */,
 				AE81E6AB209E7CC400DDD46F /* Main.storyboard in Resources */,
+				AE1F417720A17AFD00BA9BB0 /* clients.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
